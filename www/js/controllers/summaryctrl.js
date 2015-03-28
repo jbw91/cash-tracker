@@ -1,5 +1,5 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
-.controller('SummaryCtrl', function($scope) {
+.controller('SummaryCtrl', ['$scope', function($scope) {
 
-});
+}]);

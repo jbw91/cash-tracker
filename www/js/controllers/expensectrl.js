@@ -1,5 +1,5 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
-.controller('ExpenseCtrl', function($scope) {
+.controller('ExpenseCtrl', ['$scope', function($scope) {
 
-});
+}]);

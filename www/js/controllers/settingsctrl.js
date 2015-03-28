@@ -1,5 +1,5 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
-.controller('SettingsCtrl', function($scope) {
+.controller('SettingsCtrl', ['$scope', function($scope) {
 
-});
+}]);
