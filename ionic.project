@@ -1,6 +1,6 @@
 {
   "name": "cash-tracker",
-  "app_id": "",
+  "app_id": "299d5af6",
   "gulpStartupTasks": [
     "sass",
     "watch"
