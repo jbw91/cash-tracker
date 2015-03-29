@@ -1,5 +1,32 @@
-<ion-view view-title="Cash Tracker">
-  <ion-content>
-    <h2>Income Tab</h2>
-  </ion-content>
+<ion-view view-title="Income">
+	<ion-content>
+		<form name="incomeForm" novalidate>
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label">Item</span>
+					<input name="item" type="text" ng-model="income.item" required>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Date</span>
+					<input name="date" type="date" ng-model="income.date" required>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Amount ($)</span>
+					<input name="amount" type="number" ng-pattern="/^[0-9]{1,7}(\.[0-9]+)?$/" step="any" ng-model="income.amount" required>
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Category
+					</div>
+					<select name="category" ng-options="category.description for category in categories" ng-model="income.category">
+					</select>
+				</label>
+			</div>
+			<div class="padding">
+				<button ng-disabled="incomeForm.$invalid" class="button button-positive button-block" ng-click="addIncome()">
+					Add Income
+				</button>
+			</div>
+		</form>
+	</ion-content>
 </ion-view>
