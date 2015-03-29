@@ -7,78 +7,80 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope) {
+	$ionicPlatform.ready(function() {
+		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+		// for form inputs)
+		if (window.cordova && window.cordova.plugins.Keyboard) {
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+		}
+		if (window.StatusBar) {
+			// org.apache.cordova.statusbar required
+			StatusBar.styleDefault();
+		}
+
+		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
+	});
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+	// Ionic uses AngularUI Router which uses the concept of states
+	// Learn more here: https://github.com/angular-ui/ui-router
+	// Set up the various states which the app can be in.
+	// Each state's controller can be found in controllers.js
+	$stateProvider
 
-  // setup an abstract state for the tabs directive
-  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
+	// setup an abstract state for the tabs directive
+	.state('tab', {
+		url: "/tab",
+		abstract: true,
+		templateUrl: "templates/tabs.html"
+	})
 
-  // Each tab has its own nav history stack:
+	// Each tab has its own nav history stack:
 
-  .state('tab.summary', {
-    url: '/summary',
-    views: {
-      'tab-summary': {
-        templateUrl: 'templates/tab-summary.html',
-        controller: 'SummaryCtrl'
-      }
-    }
-  })
+	.state('tab.summary', {
+		url: '/summary',
+		views: {
+			'tab-summary': {
+				templateUrl: 'templates/tab-summary.html',
+				controller: 'SummaryCtrl'
+			}
+		}
+	})
 
-  .state('tab.income', {
-    url: '/income',
-    views: {
-      'tab-income': {
-        templateUrl: 'templates/tab-income.html',
-        controller: 'IncomeCtrl'
-      }
-    }
-  })
+	.state('tab.income', {
+		url: '/income',
+		views: {
+			'tab-income': {
+				templateUrl: 'templates/tab-income.html',
+				controller: 'IncomeCtrl'
+			}
+		}
+	})
 
-  .state('tab.expense', {
-    url: '/expense',
-    views: {
-      'tab-expense': {
-        templateUrl: 'templates/tab-expense.html',
-        controller: 'ExpenseCtrl'
-      }
-    }
-  })
+	.state('tab.expense', {
+		url: '/expense',
+		views: {
+			'tab-expense': {
+				templateUrl: 'templates/tab-expense.html',
+				controller: 'ExpenseCtrl'
+			}
+		}
+	})
 
-  .state('tab.settings', {
-    url: '/settings',
-    views: {
-      'tab-settings': {
-        templateUrl: 'templates/tab-settings.html',
-        controller: 'SettingsCtrl'
-      }
-    }
-  });
+	.state('tab.settings', {
+		url: '/settings',
+		views: {
+			'tab-settings': {
+				templateUrl: 'templates/tab-settings.html',
+				controller: 'SettingsCtrl'
+			}
+		}
+	});
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/summary');
+	// if none of the above states are matched, use this as the fallback
+	$urlRouterProvider.otherwise('/tab/summary');
 
 });
