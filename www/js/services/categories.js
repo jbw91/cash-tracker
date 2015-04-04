@@ -43,13 +43,9 @@ angular.module('starter.services')
 		deleteCategory: function(catId) {
 			var defer = $q.defer();
 
-			var query = "INSERT INTO category (description) VALUES (?)";
-			$cordovaSQLite.execute($rootScope.db, query, [cat]).then(function(data) {
-				var newCategory = {
-					"id":data.insertId,
-					"description":cat
-				};
-				defer.resolve(newCategory);
+			var query = "DELETE FROM category WHERE id=?";
+			$cordovaSQLite.execute($rootScope.db, query, [catId]).then(function(data) {
+				defer.resolve();
 			}, function (err) {
 				console.error(err);
 				defer.resolve();

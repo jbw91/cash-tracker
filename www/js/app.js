@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaSQLite, $rootScope) {
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -18,6 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			// org.apache.cordova.statusbar required
 			StatusBar.styleDefault();
 		}
+		$cordovaStatusbar.style(1);
 
 		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
 	});
