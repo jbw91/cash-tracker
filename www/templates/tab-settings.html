@@ -1,17 +1,28 @@
 <ion-view view-title="Settings">
 	<ion-content scroll="false">
-		<div class="list">
-			<label class="item item-input">
-				<span class="input-label">Category Name</span>
-				<input type="text" ng-model="$parent.newCategory">
-			</label>
-		</div>
-		<div class="padding">
-			<button class="button button-positive button-block" ng-click="addCategory()">Add Category</button>
-		</div>
-		<div ng-repeat="category in categories">
-			{{category.id}}
-			{{category.description}}
-		</div>
+		<ion-list>
+			<ion-item class="item item-divider">
+				Manage Data
+			</ion-item>
+			<ion-item class="item item-icon-left" ui-sref="tab.settings-categories()">
+				<i class="icon ion-folder"></i>
+				Categories
+			</ion-item>
+			<ion-item class="item item-icon-left">
+				<i class="icon ion-earth"></i>
+				Internationalization
+			</ion-item>
+			<ion-item class="item item-icon-left">
+				<i class="icon ion-trash-a"></i>
+				Clear Data
+			</ion-item>
+			<ion-item class="item item-divider">
+				Support
+			</ion-item>
+			<ion-item class="item item-icon-left">
+				<i class="icon ion-information-circled"></i>
+				About
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>
