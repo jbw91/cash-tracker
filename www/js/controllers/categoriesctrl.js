@@ -1,11 +1,43 @@
 angular.module('starter.controllers')
 
-.controller('CategoriesCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', function($scope, $ionicPopup, Categories, $rootScope) {
+.controller('CategoriesCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', '$ionicModal', function($scope, $ionicPopup, Categories, $rootScope, $ionicModal) {
 	$scope.addCategory = function() {
 		Categories.createCategory($scope.newCategory).then(function(data) {
 			$rootScope.categories.push(data);
 		});
 	};
+
+	$ionicModal.fromTemplateUrl('templates/category-modal.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+
+	$scope.openModal = function() {
+		$scope.modal.show();
+	};
+
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
+
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+		// Execute action
+		$scope.newCategory = '';
+	});
+
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+		// Execute action
+		$scope.newCategory = '';
+	});
 
 	$scope.deleteCategory = function(id) {
 		Categories.deleteCategory(id).then(function() {

@@ -1,0 +1,22 @@
+<ion-modal-view>
+	<ion-header-bar class="bar-balanced">
+		<button class="button button-clear" ng-click="closeModal()">Cancel</button>
+		<h1 class="title">Add New Category</h1>
+		<!-- <button class="button button-clear">Save</button> -->
+	</ion-header-bar>
+	<ion-content scroll="false">
+		<form name="categoryForm" novalidate>
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label">Name</span>
+					<input name="item" type="text" ng-model="newCategory" required>
+				</label>
+			</div>
+			<div class="padding">
+				<button ng-disabled="categoryForm.$invalid" class="button button-positive button-block" ng-click="addCategory()">
+					Save
+				</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-modal-view>
