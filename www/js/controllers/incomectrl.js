@@ -20,7 +20,10 @@ angular.module('starter.controllers')
 	function resetIncome() {
 		$scope.income = {
 			"id":0,
-			"transactionTypeId":1, // 1 is the ID for an income transaction.
+			"transactionType": {
+				"id":1, // 1 is the ID for an income transaction.
+				"description":"Income"
+			},
 			"amount":null,
 			"date":null,
 			"item":null,

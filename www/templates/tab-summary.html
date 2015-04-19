@@ -19,11 +19,11 @@ The Friends service returns an array of friend data
 				Transactions
 			</div>
 			<div class="item item-text-wrap item-divider" ng-repeat="transaction in transactions">
-				<span>{{transaction.id}}</span>
-				<span>{{transaction.amount}}</span>
-				<span>{{transaction.transactionTypeId}}</span>
+				<span>${{transaction.amount}}</span>
+				<span>{{transaction.transactionType.description}}</span>
 				<span>{{transaction.date}}</span>
 				<span>{{transaction.item}}</span>
+				<span>{{transaction.category.description}}</span>
 			</div>
 		</div>
 	</ion-content>

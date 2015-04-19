@@ -22,12 +22,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
 
+		$rootScope.transactionTypes = [
+			{"id":1,"description":"Income"},
+			{"id":2,"description":"Expense"}
+		];
 		Categories.getCategories().then(function(data) {
 			$rootScope.categories = data;
 
 			Transactions.getTransactions().then(function(data) {
 				$rootScope.transactions = data;
 			});
+
 			// $rootScope.transactions = [{
 			// 	"id":5000,
 			// 	"transactionTypeId":1, // 1 is the ID for an income transaction.
