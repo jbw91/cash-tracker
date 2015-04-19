@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar, Categories, Transactions) {
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar, Categories, Transactions, $http) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -19,6 +19,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			StatusBar.styleDefault();
 		}
 		$cordovaStatusbar.style(1);
+
+		// Find out what device user is on
+		$rootScope.device = device.platform;
+		//TODO: Create functionality to rate app in each device store once published
+
+		// Expose app version info
+		$http.get('version.json').success(function (v) {
+			$rootScope.version = v.version;
+			$rootScope.appName = v.name;
+		});
 
 		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
 
@@ -32,15 +42,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			Transactions.getTransactions().then(function(data) {
 				$rootScope.transactions = data;
 			});
-
-			// $rootScope.transactions = [{
-			// 	"id":5000,
-			// 	"transactionTypeId":1, // 1 is the ID for an income transaction.
-			// 	"amount":1.34,
-			// 	"date":"3-MAR-2015",
-			// 	"item":"Stuff",
-			// 	"category":$rootScope.categories[0]
-			// }];
 		});
 
 	});
@@ -98,6 +99,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		views: {
 			'tab-settings': {
 				templateUrl: 'templates/tab-settings.html',
+				controller: 'SettingsCtrl'
+			}
+		}
+	})
+
+	.state('tab.settings-about', {
+		url: '/settings/about',
+		views: {
+			'tab-settings': {
+				templateUrl: 'templates/about.html',
 				controller: 'SettingsCtrl'
 			}
 		}
