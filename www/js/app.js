@@ -24,10 +24,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		$rootScope.device = device.platform;
 		//TODO: Create functionality to rate app in each device store once published
 
-		// Expose app version info
-		$http.get('version.json').success(function (v) {
-			$rootScope.version = v.version;
-			$rootScope.appName = v.name;
+		cordova.getAppVersion(function(version) {
+			$rootScope.version = version;
 		});
 
 		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
