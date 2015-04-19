@@ -2,8 +2,11 @@ angular.module('starter.controllers')
 
 .controller('CategoriesCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', '$ionicModal', function($scope, $ionicPopup, Categories, $rootScope, $ionicModal) {
 	$scope.addCategory = function() {
+		console.log($scope.newCategory);
 		Categories.createCategory($scope.newCategory).then(function(data) {
 			$rootScope.categories.push(data);
+			$scope.newCategory = "";
+			$scope.closeModal();
 		});
 	};
 

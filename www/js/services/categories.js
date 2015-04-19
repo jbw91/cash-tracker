@@ -22,6 +22,20 @@ angular.module('starter.services')
 				defer.resolve(error);
 			});
 			return defer.promise;
+
+			// FOR TESTING IN BROWSER
+			// var defer = $q.defer();
+			//
+			// var results = [
+			// 	{id:1,"description":"Thread"},
+			// 	{id:2,"description":"Fabric"},
+			// 	{id:3,"description":"Uncategorized"},
+			// 	{id:4,"description":"Food"}
+			// ];
+			//
+			// defer.resolve(results);
+			//
+			// return defer.promise;
 		},
 		createCategory: function(cat) {
 			var defer = $q.defer();
@@ -39,6 +53,18 @@ angular.module('starter.services')
 			});
 
 			return defer.promise;
+
+			// FOR TESTING IN BROWSER
+			// var defer = $q.defer();
+			//
+			// var newCategory = {
+			// 	"id":10,
+			// 	"description":cat
+			// };
+			//
+			// defer.resolve(newCategory);
+			//
+			// return defer.promise;
 		},
 		deleteCategory: function(catId) {
 			var defer = $q.defer();
