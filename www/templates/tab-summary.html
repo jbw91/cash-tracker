@@ -14,5 +14,17 @@ The Friends service returns an array of friend data
 				Here I'll have some recent totals, and then total those all up for a grand total. (positive or negative)
 			</div>
 		</div>
+		<div class="card">
+			<div class="item item-divider">
+				Transactions
+			</div>
+			<div class="item item-text-wrap item-divider" ng-repeat="transaction in transactions">
+				<span>{{transaction.id}}</span>
+				<span>{{transaction.amount}}</span>
+				<span>{{transaction.transactionTypeId}}</span>
+				<span>{{transaction.date}}</span>
+				<span>{{transaction.item}}</span>
+			</div>
+		</div>
 	</ion-content>
 </ion-view>

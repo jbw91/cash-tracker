@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar) {
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar, Categories, Transactions) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -21,6 +21,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		$cordovaStatusbar.style(1);
 
 		$rootScope.db = window.sqlitePlugin.openDatabase({name: "populated.db", location: 2, createFromLocation: 1});
+
+		Categories.getCategories().then(function(data) {
+			$rootScope.categories = data;
+
+			Transactions.getTransactions().then(function(data) {
+				$rootScope.transactions = data;
+			});
+			// $rootScope.transactions = [{
+			// 	"id":5000,
+			// 	"transactionTypeId":1, // 1 is the ID for an income transaction.
+			// 	"amount":1.34,
+			// 	"date":"3-MAR-2015",
+			// 	"item":"Stuff",
+			// 	"category":$rootScope.categories[0]
+			// }];
+		});
+
 	});
 })
 

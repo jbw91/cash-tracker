@@ -5,9 +5,10 @@ angular.module('starter.services')
 	return {
 		getTransactions: function() {
 			var defer = $q.defer();
-			var query = "";
+			var query = "SELECT * FROM itemtransaction";
 			var results = [];
 			$cordovaSQLite.execute($rootScope.db, query, []).then(function(data) {
+				// TODO: Convert fields such as "transactiondate" to correct field name "date"
 				if(data.rows.length > 0) {
 					for (var i = 0; i < data.rows.length; i++) {
 						results.push(data.rows.item(i));
@@ -27,12 +28,18 @@ angular.module('starter.services')
 		createTransaction: function(transaction) {
 			var defer = $q.defer();
 
+			var insertValues = [
+				transaction.transactionTypeId,
+				transaction.amount,
+				transaction.date,
+				transaction.category.id,
+				transaction.item
+			];
+
 			var query = "INSERT INTO itemtransaction (transactiontypeid,amount,transactiondate,categoryid,item) VALUES (?,?,?,?,?)";
-			$cordovaSQLite.execute($rootScope.db, query, []).then(function(data) {
-				var newTransaction = {
-					//TODO: Create New Transaction Object
-				};
-				defer.resolve(newTransaction);
+			$cordovaSQLite.execute($rootScope.db, query, insertValues).then(function(data) {
+				transaction.id = data.insertId;
+				defer.resolve(transaction);
 			}, function (err) {
 				console.error(err);
 				defer.resolve();
