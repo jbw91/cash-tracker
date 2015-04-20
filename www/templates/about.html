@@ -1,6 +1,36 @@
 <ion-view view-title="About">
-	<ion-content class="padding">
-		<h3 align="center">Cash Tracker</h3>
-		<h4>Version: {{version}}</h4>
+	<ion-content scroll="false">
+		<ion-list>
+			<ion-item class="item item-divider">
+				Application Info
+			</ion-item>
+			<ion-item>
+				App Name
+				<span class="item-note">
+					Cash Tracker
+				</span>
+			</ion-item>
+			<ion-item>
+				Version
+				<span class="item-note">
+					{{version}}
+				</span>
+			</ion-item>
+			<ion-item>
+				Publisher
+				<span class="item-note">
+					TetoDeMadeira
+				</span>
+			</ion-item>
+			<ion-item class="item item-divider">
+				Help and Support
+			</ion-item>
+			<ion-item ng-click="giveFeedback()">
+				Give Feedback
+				<span class="item-note">
+					woodruffapps@gmail.com
+				</span>
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>
