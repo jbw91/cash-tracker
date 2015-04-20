@@ -3,9 +3,15 @@
 	<ion-nav-buttons side="right">
 		<button class="button button-icon icon ion-ios-plus-empty" ng-click="openModal()"></button>
 	</ion-nav-buttons>
-	<ion-content>
+	<div class="bar bar-subheader">
+		<div class="button-bar">
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===2}" ng-click="transactionType=1">Income</a>
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===1}" ng-click="transactionType=2">Expense</a>
+		</div>
+	</div>
+	<ion-content class="has-subheader">
 		<ion-list can-swipe="true">
-			<ion-item ng-repeat="category in categories">
+			<ion-item ng-repeat="category in categories | transactionTypeFilter:transactionType">
 				{{category.description}}
 				<ion-option-button class="button-assertive" ng-click="deleteCategory(category.id)">
 					Delete

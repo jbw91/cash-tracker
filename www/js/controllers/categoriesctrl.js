@@ -54,6 +54,7 @@ angular.module('starter.controllers')
 	};
 
 	function ctrlSetup() {
+		$scope.transactionType = 1;
 		Categories.getCategories().then(function(data) {
 			$rootScope.categories = data;
 		});
