@@ -31,10 +31,9 @@ angular.module('starter.services')
 							}
 						}
 						results.push(t);
-						console.log(t);
 					}
 				} else {
-					console.log("No results found");
+					// No results found
 				}
 				defer.resolve(results);
 			}, function (err) {

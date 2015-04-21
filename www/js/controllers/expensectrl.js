@@ -3,18 +3,26 @@ angular.module('starter.controllers')
 .controller('ExpenseCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', '$filter', 'Transactions', function($scope, $ionicPopup, Categories, $rootScope, $filter, Transactions) {
 
 	$scope.addExpense = function() {
-		var t = angular.copy($scope.expense);
-		t.date = $filter('date')(t.date,'MMM dd, yyyy');
-		Transactions.createTransaction(t).then(function(data) {
-			$rootScope.transactions.push(data);
-
+		if($scope.expense.category === "") {
 			$ionicPopup.alert({
-				title: 'Success',
-				template: 'Added expense.'
+				title: 'Error',
+				template: 'Please select a category.'
 			});
+		}
+		else {
+			var t = angular.copy($scope.expense);
+			t.date = $filter('date')(t.date,'MMM dd, yyyy');
+			Transactions.createTransaction(t).then(function(data) {
+				$rootScope.transactions.push(data);
 
-			resetExpense();
-		});
+				$ionicPopup.alert({
+					title: 'Success',
+					template: 'Added expense.'
+				});
+
+				resetExpense();
+			});
+		}
 	};
 
 	function resetExpense() {
@@ -27,7 +35,7 @@ angular.module('starter.controllers')
 			"amount":null,
 			"date":null,
 			"item":null,
-			"category":$rootScope.categories[0]
+			"category":""
 		};
 	}
 

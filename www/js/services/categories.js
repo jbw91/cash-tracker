@@ -26,7 +26,7 @@ angular.module('starter.services')
 						results.push(c);
 					}
 				} else {
-					console.log("No results found");
+					// No results found
 				}
 				defer.resolve(results);
 			}, function (err) {
@@ -53,11 +53,17 @@ angular.module('starter.services')
 		createCategory: function(cat) {
 			var defer = $q.defer();
 
-			var query = "INSERT INTO category (description) VALUES (?)";
-			$cordovaSQLite.execute($rootScope.db, query, [cat]).then(function(data) {
+			console.log("Description: " + cat.description);
+			console.log("Transaction Type ID: " + cat.transactionType.id);
+
+			var query = "INSERT INTO category (description, transactiontypeid) VALUES (?,?)";
+			$cordovaSQLite.execute($rootScope.db, query, [cat.description, cat.transactionType.id]).then(function(data) {
 				var newCategory = {
 					"id":data.insertId,
-					"description":cat
+					"description":cat.description,
+					"transactionType":{
+						"id":cat.transactionType.id
+					}
 				};
 				defer.resolve(newCategory);
 			}, function (err) {

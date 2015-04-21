@@ -3,18 +3,26 @@ angular.module('starter.controllers')
 .controller('IncomeCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', 'Transactions', '$filter', function($scope, $ionicPopup, Categories, $rootScope, Transactions, $filter) {
 
 	$scope.addIncome = function() {
-		var t = angular.copy($scope.income);
-		t.date = $filter('date')(t.date,'MMM dd, yyyy');
-		Transactions.createTransaction(t).then(function(data) {
-			$rootScope.transactions.push(data);
-
+		if($scope.income.category === "") {
 			$ionicPopup.alert({
-				title: 'Success',
-				template: 'Added income.'
+				title: 'Error',
+				template: 'Please select a category.'
 			});
+		}
+		else {
+			var t = angular.copy($scope.income);
+			t.date = $filter('date')(t.date,'MMM dd, yyyy');
+			Transactions.createTransaction(t).then(function(data) {
+				$rootScope.transactions.push(data);
 
-			resetIncome();
-		});
+				$ionicPopup.alert({
+					title: 'Success',
+					template: 'Added income.'
+				});
+
+				resetIncome();
+			});
+		}
 	};
 
 	function resetIncome() {
@@ -27,7 +35,7 @@ angular.module('starter.controllers')
 			"amount":null,
 			"date":null,
 			"item":null,
-			"category":$rootScope.categories[0]
+			"category":""
 		};
 	}
 

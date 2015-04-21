@@ -1,13 +1,27 @@
 angular.module('starter.controllers')
 
 .controller('CategoriesCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', '$ionicModal', function($scope, $ionicPopup, Categories, $rootScope, $ionicModal) {
+	function cleanCategory() {
+		$scope.newCategory = {
+			"description":"",
+			"transactionType":""
+		};
+	}
+
 	$scope.addCategory = function() {
-		console.log($scope.newCategory);
-		Categories.createCategory($scope.newCategory).then(function(data) {
-			$rootScope.categories.push(data);
-			$scope.newCategory = "";
-			$scope.closeModal();
-		});
+		if($scope.newCategory.transactionType === "") {
+			$ionicPopup.alert({
+				title: 'Error',
+				template: 'Please select a transaction type.'
+			});
+		}
+		else {
+			Categories.createCategory($scope.newCategory).then(function(data) {
+				$rootScope.categories.push(data);
+				cleanCategory();
+				$scope.closeModal();
+			});
+		}
 	};
 
 	$ionicModal.fromTemplateUrl('templates/category-modal.html', {
@@ -33,13 +47,13 @@ angular.module('starter.controllers')
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {
 		// Execute action
-		$scope.newCategory = '';
+		cleanCategory();
 	});
 
 	// Execute action on remove modal
 	$scope.$on('modal.removed', function() {
 		// Execute action
-		$scope.newCategory = '';
+		cleanCategory();
 	});
 
 	$scope.deleteCategory = function(id) {
@@ -55,6 +69,7 @@ angular.module('starter.controllers')
 
 	function ctrlSetup() {
 		$scope.transactionType = 1;
+		cleanCategory();
 		Categories.getCategories().then(function(data) {
 			$rootScope.categories = data;
 		});
