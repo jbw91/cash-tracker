@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 .controller('IncomeCtrl', ['$scope', '$ionicPopup', 'Categories', '$rootScope', 'Transactions', '$filter', function($scope, $ionicPopup, Categories, $rootScope, Transactions, $filter) {
 
 	$scope.addIncome = function() {
-		if($scope.income.category === "") {
+		if(!$scope.income.category || $scope.income.category == null || $scope.income.category === "") {
 			$ionicPopup.alert({
 				title: 'Error',
 				template: 'Please select a category.'

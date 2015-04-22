@@ -1,0 +1,21 @@
+{
+	"node": true,
+	"browser": true,
+	"esnext": true,
+	"bitwise": false,
+	"eqeqeq": true,
+	"eqnull": true,
+	"latedef": true,
+	"noarg": true,
+	"regexp": true,
+	"undef": true,
+	"unused": true,
+	"strict": false,
+	"boss": true,
+	"devel": true,
+	"globals": {
+		"angular": false,
+		"$": false,
+		"_": false
+	}
+}
