@@ -7,17 +7,20 @@ The Friends service returns an array of friend data
 <ion-view view-title="Summary">
 	<div class="bar bar-subheader">
 		<div class="button-bar">
-			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===2}" ng-click="transactionType=1">Income</a>
-			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===1}" ng-click="transactionType=2">Expense</a>
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===2}" ng-click="changeTransactionType(1)">Income</a>
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===1}" ng-click="changeTransactionType(2)">Expense</a>
 		</div>
 	</div>
 	<ion-content class="has-subheader">
-		<div align="center">
+		<div ng-hide="transactions.length<1" align="center">
 			<h5 class="summary-heading">Transactions by Category</h5>
-			<canvas id="myChart" width="200" height="200"></canvas>
-			<div id="chartLegend"></div>
+			<canvas ng-hide="data.length<1" id="myChart" width="200" height="200"></canvas>
+			<div class="summary-heading" ng-show="data.length<1">
+				<p>No Data to Display</p>
+			</div>
+			<div ng-hide="data.length<1" id="chartLegend"></div>
 		</div>
-		<div class="list card">
+		<div ng-hide="transactions.length<1" class="list card">
 			<div class="item item-divider">
 				Recent Transactions
 			</div>
@@ -26,10 +29,19 @@ The Friends service returns an array of friend data
 				<span>{{transaction.item}}</span>
 				<span class="item-note">{{transaction.date}}</span>
 			</div>
+			<div class="item item-text-wrap" ng-show="transactions.length<1">
+				<p>No Transactions</p>
+			</div>
 			<div class="item item-divider no-padding" align="right">
-				<button class="button button-small button-clear button-positive">
+				<button ng-hide="transactions.length<1" class="button button-small button-clear button-positive">
 					See More
 				</button>
+			</div>
+		</div>
+		<div align="center" ng-show="transactions.length<1">
+			<h4 class="summary-heading">It's lonely in here</h4>
+			<div class="summary-heading" ng-show="data.length<1">
+				<p>Try adding some transactions!</p>
 			</div>
 		</div>
 		<!-- <div class="card">
