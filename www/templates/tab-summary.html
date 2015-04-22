@@ -6,24 +6,27 @@ The Friends service returns an array of friend data
 -->
 <ion-view view-title="Summary">
 	<ion-content>
-		<div class="card">
+		<div class="list card">
 			<div class="item item-divider">
-				Recent Income and Expenses
+				Recent Transactions
 			</div>
-			<div class="item item-text-wrap">
-				Here I'll have some recent totals, and then total those all up for a grand total. (positive or negative)
+			<div class="item item-text-wrap" ng-repeat="transaction in transactions | limitTo:5">
+				<span>${{transaction.amount | number:2}}</span>
+				<span>{{transaction.item}}</span>
+				<span class="item-note">{{transaction.date}}</span>
+			</div>
+			<div class="item item-divider no-padding" align="right">
+				<button class="button button-small button-clear button-positive">
+					See More
+				</button>
 			</div>
 		</div>
 		<div class="card">
 			<div class="item item-divider">
-				Transactions
+				Income This Month
 			</div>
-			<div class="item item-text-wrap item-divider" ng-repeat="transaction in transactions">
-				<span>${{transaction.amount}}</span>
-				<span>{{transaction.transactionType.description}}</span>
-				<span>{{transaction.date}}</span>
-				<span>{{transaction.item}}</span>
-				<span>{{transaction.category.description}}</span>
+			<div>
+				<canvas doughnutchart options="options" data="data" width="300" height="250"></canvas>
 			</div>
 		</div>
 	</ion-content>
