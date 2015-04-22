@@ -5,7 +5,18 @@ The FriendsCtrl pulls data from the Friends service (service.js)
 The Friends service returns an array of friend data
 -->
 <ion-view view-title="Summary">
-	<ion-content>
+	<div class="bar bar-subheader">
+		<div class="button-bar">
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===2}" ng-click="transactionType=1">Income</a>
+			<a class="button button-small button-positive" ng-class="{'button-outline':transactionType===1}" ng-click="transactionType=2">Expense</a>
+		</div>
+	</div>
+	<ion-content class="has-subheader">
+		<div align="center">
+			<h5 class="summary-heading">Transactions by Category</h5>
+			<canvas id="myChart" width="200" height="200"></canvas>
+			<div id="chartLegend"></div>
+		</div>
 		<div class="list card">
 			<div class="item item-divider">
 				Recent Transactions
@@ -21,11 +32,11 @@ The Friends service returns an array of friend data
 				</button>
 			</div>
 		</div>
-		<div class="card">
+		<!-- <div class="card">
 			<div class="item item-divider">
 				Income This Month
 			</div>
-		</div>
+		</div> -->
 	</ion-content>
 	<!-- TODO: For charts, have a pie chart that shows percentage of expenses. -->
 </ion-view>

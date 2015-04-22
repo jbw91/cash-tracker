@@ -2,3 +2,22 @@
 .no-padding {
 	padding:0 !important;
 }
+
+.summary-heading {
+	color: #666;
+}
+
+.color-dot {
+	height: 10px;
+	width: 10px;
+	content: "";
+	display: inline-block;
+	border-radius: 10px;
+	margin-right: 5px;
+}
+
+.doughnut-legend > li {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+}
