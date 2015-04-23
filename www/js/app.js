@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.filters', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar, Categories, Transactions, $http, $cordovaAppVersion) {
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope, $cordovaStatusbar, Categories, Transactions, $http, $cordovaAppVersion, $cordovaDevice) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		$cordovaStatusbar.style(1);
 
 		// Find out what device user is on
-		$rootScope.device = device.platform;
+		$rootScope.device = $cordovaDevice.getPlatform();
 		//TODO: Create functionality to rate app in each device store once published
 
 		$cordovaAppVersion.getAppVersion().then(function (version) {
