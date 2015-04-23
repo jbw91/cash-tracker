@@ -18,7 +18,7 @@ angular.module('starter.controllers')
 		segmentStrokeWidth : 2,
 
 		//Number - The percentage of the chart that we cut out of the middle
-		percentageInnerCutout : 80, // This is 0 for Pie charts
+		percentageInnerCutout : 75, // This is 0 for Pie charts
 
 		//Number - Amount of animation steps
 		animationSteps : 50,
@@ -68,7 +68,25 @@ angular.module('starter.controllers')
 			value: 300,
 			color:chart1,
 			highlight:chart1Light,
-			label: "Red"
+			label: "Fabric"
+		},
+		{
+			value: 150,
+			color:chart2,
+			highlight:chart2Light,
+			label: "Ribbon"
+		},
+		{
+			value: 40,
+			color:chart3,
+			highlight:chart3Light,
+			label: "Thread"
+		},
+		{
+			value: 224,
+			color:chart4,
+			highlight:chart4Light,
+			label: "Events"
 		}
 	];
 
