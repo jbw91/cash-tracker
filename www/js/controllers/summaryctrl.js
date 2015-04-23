@@ -65,25 +65,25 @@ angular.module('starter.controllers')
 
 	$scope.data = [
 		{
-			value: 300,
+			value: 50,
 			color:chart1,
 			highlight:chart1Light,
 			label: "Fabric"
 		},
 		{
-			value: 150,
+			value: 50,
 			color:chart2,
 			highlight:chart2Light,
 			label: "Ribbon"
 		},
 		{
-			value: 40,
+			value: 50,
 			color:chart3,
 			highlight:chart3Light,
 			label: "Thread"
 		},
 		{
-			value: 224,
+			value: 50,
 			color:chart4,
 			highlight:chart4Light,
 			label: "Events"
