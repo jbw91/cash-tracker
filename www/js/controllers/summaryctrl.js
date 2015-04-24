@@ -90,6 +90,27 @@ angular.module('starter.controllers')
 		}
 	];
 
+	function createTransactionGroups() {
+		// TODO: Group transactions into category groups.
+		// Categories.getCategories().then(function(data) {
+		// 	$rootScope.categories = data;
+		//
+		// 	$scope.dataCategoriesIncome = [];
+		// 	$scope.dataCategoriesExpense = [];
+		// 	for(var i = 0; i < $rootScope.categories.length; i++) {
+		// 		if($rootScope.categories[i].transactionType.id === 1) {
+		// 			$scope.dataCategoriesIncome[$rootScope.categories[i].description] = [];
+		// 		}
+		// 		else if($rootScope.categories[i].transactionType.id === 2) {
+		// 			$scope.dataCategoriesExpense[$rootScope.categories[i].description] = [];
+		// 		}
+		// 	}
+		// 	for(i = 0; i < $rootScope.transactions.length; i++) {
+		//
+		// 	}
+		// });
+	}
+
 	var ctx = document.getElementById("myChart").getContext("2d");
 
 	var myDoughnutChart = new Chart(ctx).Doughnut($scope.data,options);
@@ -102,6 +123,7 @@ angular.module('starter.controllers')
 	function ctrlSetup() {
 		$scope.transactionType = 1;
 
+		createTransactionGroups();
 	}
 
 	ctrlSetup();

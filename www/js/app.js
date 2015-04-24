@@ -34,14 +34,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			{"id":1,"description":"Income"},
 			{"id":2,"description":"Expense"}
 		];
-		Categories.getCategories().then(function(data) {
-			$rootScope.categories = data;
-
-			Transactions.getTransactions().then(function(data) {
-				$rootScope.transactions = data;
-				// $rootScope.transactions = [];
-			});
-		});
+		// Categories.getCategories().then(function(data) {
+		// 	$rootScope.categories = data;
+		//
+		// 	Transactions.getTransactions().then(function(data) {
+		// 		$rootScope.transactions = data;
+		// 		// $rootScope.transactions = [];
+		// 	});
+		// });
 
 		function setGlobalChartSettings() {
 			Chart.defaults.global = {
